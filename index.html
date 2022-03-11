@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Teacher Portal</title>
+    <link rel="stylesheet" href="side_nav.css">
+    <link rel="stylesheet" href="teacher.css">
+    <script src="myjquery.js"></script>
+    <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+    </script>
+    <script>
+     $(document).ready(function(){
+       $("#augment").click(function(){
+         $(".backg").hide();
+         $(".augment").toggle(300);
+         $(".uploadcontent").hide();
+         $(".bridge").hide();
+       });
+     });
+     $(document).ready(function(){
+       $("#upload").click(function(){
+         $(".backg").hide();
+         $(".uploadcontent").toggle(300);
+         $(".augment").hide();
+         $(".bridge").hide();
+       });
+     });
+     $(document).ready(function(){
+       $("#bridge").click(function(){
+         $(".backg").hide();
+         $(".bridge").toggle(300);
+         $(".uploadcontent").hide();
+         $(".augment").hide();
+         $("#join").hide();
+       });
+     });
+     $(document).ready(function(){
+       $("#logout").click(function(){
+         window.location.replace("rce_login.html");
+       });
+     });
+     $(document).ready(function(){
+       $("#drawing").click(function(){
+	 window.open("https://192.168.43.182:5004/");
+       });
+     });
+     $(document).ready(function(){
+       $("#assess").click(function(){
+	 var name = localStorage.getItem("TeacherName");
+	 var id = localStorage.getItem("TeacherId");
+	 var url = "https://192.168.43.182:5010/?user_id=" + id + "&profile=teacher&name=" + name;
+         window.open(url);
+       });
+     });
+
+     $(document).ready(function(){
+       $("#create").click(function(){
+         $("#join").show(100);
+       });
+     });
+     $(document).ready(function(){
+       $("#generate").click(function(){
+	 window.open("./ContentGen/index.html");
+       });
+     });
+     $(document).ready(function(){
+       $("#subjects").click(function(){
+         $("#chapters").toggle(300);
+       });
+     });
+   </script>
+   <script type="text/javascript">
+  function createSelect() {
+
+    var subs = localStorage.getItem("subjects");
+    var values = subs.split(" ");
+    var select = document.getElementById("subjects");
+    for (const val of values) {
+      var option = document.createElement("option");
+      option.value = val;
+      option.id = val;
+
+      option.text = val.charAt(0).toUpperCase() + val.slice(1);
+      select.appendChild(option);
+    }
+    var label = document.createElement("label");
+
+    label.htmlFor = "subjects";
+    document.getElementById("dropdown").appendChild(label);
+  }
+  function createSelectBridge() {
+
+    var subs = localStorage.getItem("subjects");
+    var values = subs.split(" ");
+    var select = document.getElementById("subbridge");
+    for (const val of values) {
+      var option = document.createElement("option");
+      option.value = val;
+      option.id = val;
+
+      option.text = val.charAt(0).toUpperCase() + val.slice(1);
+      select.appendChild(option);
+    }
+    var label = document.createElement("label");
+
+    label.htmlFor = "subjects";
+    document.getElementById("dropdownbridge").appendChild(label);
+  }
+
+
+</script>
+
+  <script>
+   function populate(s1,s2){
+     var s1 = document.getElementById(s1);
+     var s2 = document.getElementById(s2);
+     s2.innerHTML = "";
+
+       if(s1.value == "Select"){
+       var optionArray = ["|Select"];
+
+     } else if(s1.value == "Physics"){
+       var optionArray = ["|Choose Chapter","emt|EMT","newton|Netwon Laws", "current|Current Electricty"];
+     } else if(s1.value == "Chemistry"){
+       var optionArray = ["|Choose Chapter","pblock|P-Block Elements","electro|Electrochemistry", "organic|Organic"];
+     } else if(s1.value == "Math"){
+       var optionArray = ["|Choose Chapter","matrices|Matrices","trigonometry|Trigonometry", "calculus|Calculus"];
+     } else if(s1.value == "Biology"){
+       var optionArray = ["|Choose Chapter","anatomy|Anatomy","foodweb|Foodweb", "dna|DNA"];
+     }
+
+     for(var option in optionArray){
+        var pair = optionArray[option].split("|");
+        var newOption = document.createElement("option");
+        newOption.value = pair[0];
+        newOption.id = pair[0];
+        newOption.innerHTML = pair[1];
+        s2.options.add(newOption);
+     }
+
+
+   }
+    </script>
+   <script type="text/javascript">
+  function showDiv(){
+
+      let val = document.getElementById('chapters').value;
+
+
+      if(val ==  'anatomy'){
+        document.getElementById('p1').style.display = "none";
+        document.getElementById('p2').style.display = "none";
+        document.getElementById('p3').style.display = "none";
+        document.getElementById('c1').style.display = "none";
+        document.getElementById('c2').style.display = "none";
+        document.getElementById('c3').style.display = "none";
+        document.getElementById('m1').style.display = "none";
+        document.getElementById('m2').style.display = "none";
+        document.getElementById('m3').style.display = "none";
+        document.getElementById('b2').style.display = "none";
+        document.getElementById('b3').style.display = "none";
+        document.getElementById('b1').style.display = "block";
+
+      }
+      else if(val =="emt"){
+        console.log(val);
+        document.getElementById('b1').style.display = "none";
+        document.getElementById('b2').style.display = "none";
+        document.getElementById('b3').style.display = "none";
+        document.getElementById('p2').style.display = "none";
+        document.getElementById('p3').style.display = "none";
+        document.getElementById('c1').style.display = "none";
+        document.getElementById('c2').style.display = "none";
+        document.getElementById('c3').style.display = "none";
+        document.getElementById('m1').style.display = "none";
+        document.getElementById('m2').style.display = "none";
+        document.getElementById('m3').style.display = "none";
+        document.getElementById('p1').style.display = "block";
+
+      }else if(val =="newton"){
+
+        document.getElementById('b1').style.display = "none";
+        document.getElementById('b2').style.display = "none";
+        document.getElementById('b3').style.display = "none";
+        document.getElementById('p1').style.display = "none";
+        document.getElementById('p3').style.display = "none";
+        document.getElementById('c1').style.display = "none";
+        document.getElementById('c2').style.display = "none";
+        document.getElementById('c3').style.display = "none";
+        document.getElementById('m1').style.display = "none";
+        document.getElementById('m2').style.display = "none";
+        document.getElementById('m3').style.display = "none";
+        document.getElementById('p2').style.display = "block";
+      }
+      else if(val =="current"){
+
+       document.getElementById('b1').style.display = "none";
+       document.getElementById('b2').style.display = "none";
+       document.getElementById('b3').style.display = "none";
+       document.getElementById('p1').style.display = "none";
+       document.getElementById('p2').style.display = "none";
+       document.getElementById('c1').style.display = "none";
+       document.getElementById('c2').style.display = "none";
+       document.getElementById('c3').style.display = "none";
+       document.getElementById('m1').style.display = "none";
+       document.getElementById('m2').style.display = "none";
+       document.getElementById('m3').style.display = "none";
+       document.getElementById('p3').style.display = "block";
+     }
+     else if(val =="pblock"){
+
+       document.getElementById('b1').style.display = "none";
+       document.getElementById('b2').style.display = "none";
+       document.getElementById('b3').style.display = "none";
+       document.getElementById('p1').style.display = "none";
+       document.getElementById('p2').style.display = "none";
+       document.getElementById('p3').style.display = "none";
+       document.getElementById('c2').style.display = "none";
+       document.getElementById('c3').style.display = "none";
+       document.getElementById('m1').style.display = "none";
+       document.getElementById('m2').style.display = "none";
+       document.getElementById('m3').style.display = "none";
+       document.getElementById('c1').style.display = "block";
+     }
+     else if(val =="electro"){
+
+       document.getElementById('b1').style.display = "none";
+       document.getElementById('b2').style.display = "none";
+       document.getElementById('b3').style.display = "none";
+       document.getElementById('p1').style.display = "none";
+       document.getElementById('p2').style.display = "none";
+       document.getElementById('p3').style.display = "none";
+       document.getElementById('c1').style.display = "none";
+       document.getElementById('c3').style.display = "none";
+       document.getElementById('m1').style.display = "none";
+       document.getElementById('m2').style.display = "none";
+       document.getElementById('m3').style.display = "none";
+       document.getElementById('c2').style.display = "block";
+     }
+     else if(val =="organic"){
+
+       document.getElementById('b1').style.display = "none";
+       document.getElementById('b2').style.display = "none";
+       document.getElementById('b3').style.display = "none";
+       document.getElementById('p1').style.display = "none";
+       document.getElementById('p2').style.display = "none";
+       document.getElementById('p3').style.display = "none";
+       document.getElementById('c1').style.display = "none";
+       document.getElementById('c2').style.display = "none";
+       document.getElementById('m1').style.display = "none";
+       document.getElementById('m2').style.display = "none";
+       document.getElementById('m3').style.display = "none";
+       document.getElementById('c3').style.display = "block";
+     }
+     else if(val =="matrices"){
+
+       document.getElementById('b1').style.display = "none";
+       document.getElementById('b2').style.display = "none";
+       document.getElementById('b3').style.display = "none";
+       document.getElementById('p1').style.display = "none";
+       document.getElementById('p2').style.display = "none";
+       document.getElementById('p3').style.display = "none";
+       document.getElementById('c1').style.display = "none";
+       document.getElementById('c2').style.display = "none";
+       document.getElementById('c3').style.display = "none";
+       document.getElementById('m2').style.display = "none";
+       document.getElementById('m3').style.display = "none";
+       document.getElementById('m1').style.display = "block";
+     }
+     else if(val =="trigonometry"){
+
+       document.getElementById('b1').style.display = "none";
+       document.getElementById('b2').style.display = "none";
+       document.getElementById('b3').style.display = "none";
+       document.getElementById('p1').style.display = "none";
+       document.getElementById('p3').style.display = "none";
+       document.getElementById('c1').style.display = "none";
+       document.getElementById('c2').style.display = "none";
+       document.getElementById('c3').style.display = "none";
+       document.getElementById('m1').style.display = "none";
+       document.getElementById('p2').style.display = "none";
+       document.getElementById('m3').style.display = "block";
+       document.getElementById('m2').style.display = "none";
+     }
+    else if(val =="calculus"){
+
+       document.getElementById('b1').style.display = "none";
+       document.getElementById('b2').style.display = "none";
+       document.getElementById('b3').style.display = "none";
+       document.getElementById('p1').style.display = "none";
+       document.getElementById('p3').style.display = "none";
+       document.getElementById('c1').style.display = "none";
+       document.getElementById('c2').style.display = "none";
+       document.getElementById('c3').style.display = "none";
+       document.getElementById('m1').style.display = "none";
+       document.getElementById('p2').style.display = "none";
+       document.getElementById('m3').style.display = "none";
+       document.getElementById('m2').style.display = "block";
+     }
+	  
+     else if(val =="newton"){
+
+       document.getElementById('b1').style.display = "none";
+       document.getElementById('b2').style.display = "none";
+       document.getElementById('b3').style.display = "none";
+       document.getElementById('p1').style.display = "none";
+       document.getElementById('p3').style.display = "none";
+       document.getElementById('c1').style.display = "none";
+       document.getElementById('c2').style.display = "none";
+       document.getElementById('c3').style.display = "none";
+       document.getElementById('m1').style.display = "none";
+       document.getElementById('m2').style.display = "none";
+       document.getElementById('p2').style.display = "none";
+       document.getElementById('m3').style.display = "block";
+     }
+     else if(val =="foodweb"){
+
+       document.getElementById('b1').style.display = "none";
+       document.getElementById('p2').style.display = "none";
+       document.getElementById('b3').style.display = "none";
+       document.getElementById('p1').style.display = "none";
+       document.getElementById('p3').style.display = "none";
+       document.getElementById('c1').style.display = "none";
+       document.getElementById('c2').style.display = "none";
+       document.getElementById('c3').style.display = "none";
+       document.getElementById('m1').style.display = "none";
+       document.getElementById('m2').style.display = "none";
+       document.getElementById('m3').style.display = "none";
+       document.getElementById('b2').style.display = "block";
+     }
+     else if(val =="dna"){
+
+       document.getElementById('b1').style.display = "none";
+       document.getElementById('b2').style.display = "none";
+       document.getElementById('p3').style.display = "none";
+       document.getElementById('p1').style.display = "none";
+       document.getElementById('p3').style.display = "none";
+       document.getElementById('c1').style.display = "none";
+       document.getElementById('c2').style.display = "none";
+       document.getElementById('c3').style.display = "none";
+       document.getElementById('m1').style.display = "none";
+       document.getElementById('m2').style.display = "none";
+       document.getElementById('m3').style.display = "none";
+       document.getElementById('b3').style.display = "block";
+     }
+    };
+  </script>
+
+  </head>
+  <body>
+    <div class="h1-class">
+      <img src="wipro_trans.gif" height="80" width="90" style="float:left;">
+      <h1>Remote Classroom Experience</h1>
+    </div>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a id="bridge" href="#" onclick="createSelectBridge()">Create Bridge</a>
+      <a id="augment" href="#" onclick="createSelect()">Augmentation</a>
+      <a id="upload" href="#">Upload Content</a>
+      <a id="generate" href="#">Generate Content</a>
+      <a id="drawing" href="#">Virtual Drawing</a>
+      <a id="assess" href="#">Assessment</a>
+      <a id="logout" href="#">Logout</a>
+    </div>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+    <div class="backg">
+      <img src="overview5g.png" alt="Image not found" width="1070" height="620">
+    </div>
+    <div class="augment" hidden>
+      <div class="dropdown" id="dropdown">
+       <select name="subjects" id="subjects" onclick="populate(this.id,'chapters')"></select><br><br><br>
+       <select name="chapters" id="chapters" onchange="showDiv()" hidden>
+       </select>
+      </div>
+
+      <div class="image" id ="b1" style="display: none;">
+      <img src="images/anatomy.PNG" class="anatomy" id="anatomy" alt="Image not found" width="500" height="620" style="margin-left:300px;">
+      <button class="btn" id="heart">Heart</button>
+      <button class="btn" id="lungs">Lungs</button>
+      <button class="btn" id="liver">Liver</button>
+      <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+      </div>
+      <div class="image" id="p1" style="display: none;">
+        <img src="images/emt.png" class="emt" id="emt" alt="Image not found" width="500" height="620" style="margin-left:300px;"></div>
+      <div class="image" id="p2"  style="display: none;">
+        <img src="images/newton.jpg" id="newton" alt="Image not found" width="500" height="620" style="margin-left:300px;"></div>
+      <div class="image" id="p3"  style="display: none;" >
+        <img src="images/current.png" id="current" alt="Image not found" width="500" height="620" style="margin-left:300px;"></div>
+      <div class="image" id="c1" style="display: none;">
+        <img src="images/pblock.jpg" id="pblock"   alt="Image not found" width="500" height="620" style="margin-left:300px;"></div>  
+      <div class="image" id="c2" style="display: none;">
+        <img src="images/electro.png" id="electro"  alt="Image not found" width="500" height="620" style="margin-left:300px;"></div>  
+      <div class="image" id="c3"style="display: none;">
+        <img src="images/organic.png" id="organic"  alt="Image not found" width="500" height="620" style="margin-left:300px;"></div>        
+      <div class="image" id="m1" style="display: none;">  
+        <img src="images/matrices.png" id="matrices" alt="Image not found" width="500" height="620" style="margin-left:300px;"></div>
+      <div class="image" id="m2"style="display: none;">  
+        <img src="images/calculus.jpg" id="calculus" alt="Image not found" width="500" height="620" style="margin-left:300px;"></div>
+      <div class="image" id="m3" style="display: none;">  
+        <img src="images/trigonometry.png" id="trigonometry" alt="Image not found" width="500" height="620" style="margin-left:300px;"></div>
+      <div class="image" id="b2" style="display: none;">  
+        <img src="images/foodweb.jpg" id="foodweb" alt="Image not found" width="500" height="620" style="margin-left:300px;"></div>
+      <div class="image" id="b3" style="display: none;">    
+        <img src="images/dna.png" alt="Image not found" id="dna" width="500" height="620" style="margin-left:300px;"></div>
+    </div>
+    <div class="uploadcontent" hidden>
+        <br><br>
+        <h2 style="color:#1d1f1c;">  &#9757;  Upload the Content from the system</h2> <br><br><br>
+        <input type="file" id="myFile" name="filepath" id="filebutton"> <br><br> <br>
+        <label for="organs">Organ type:</label>
+        <select id="organs" name="organs">
+          <option value="heart">Heart</option>
+          <option value="anatomy">Anatomy</option>
+          <option value="brain">Brain</option>
+          <option value="lungs">Lungs</option>
+        </select> <br><br><br>
+        <button type="button" name="button" id="organsubmit">Upload</button>
+        <br><br>
+    </div>
+    <div class="bridge" hidden>
+      <br>
+      <h2>Create a Video Bridge here!</h2> <br> <br>
+      <label><b>Select the Subject</b></label><br>
+      <div class="dropdownbridge" id="dropdownbridge">
+	      <!--<select name="subjects" id="subbridge"></select>-->
+	      <select id="sub" name="sub">
+		<option value="Physics">Physics</option>
+		<option value="Chemistry">Chemistry</option>
+		<option value="Math">Maths</option>
+		<option value="Biology">Biology</option>
+      	      </select>
+      </div>
+      <br> <br> <br><br>
+      <button type="button" id="create" name="button" onclick="sendBridgeDetails()"><span>Create</span></button> <br><br><br><br>
+      <button type="button" id="join" name="button" style="display:none;" onclick="joinBridge()">Join Bridge</button>
+    </div>
+    <script type="text/javascript">
+      function sendBridgeDetails() {
+        //console.log(formData,filepath)
+        var sectionname = localStorage.getItem("sectionname");
+        var teacherId = localStorage.getItem("TeacherName");
+        var subject = document.getElementById("sub").value;
+        var request = new XMLHttpRequest();
+        var myObj = {"section":sectionname, "teacher_id":teacherId, "subject":subject};
+        request.open("POST", "https://192.168.43.182:5001/createRoom", true);
+        request.setRequestHeader('Content-Type', 'application/json');
+        request.onreadystatechange = function () {
+            if (request.readyState === 4 && request.status === 200) {
+                //var json = JSON.parse(request.responseText);
+                var rx = request.responseText;
+		localStorage.setItem("TeacherCourse", subject);
+		localStorage.setItem("StudentCourse", subject);
+            }
+        };
+        request.send(JSON.stringify(myObj));
+      }
+    </script>
+    <script type="text/javascript">
+      function joinBridge() {
+        //console.log(formData,filepath)
+        var sectionname = localStorage.getItem("sectionname");
+        console.log(sectionname);
+        var teacherId = localStorage.getItem("TeacherName");
+        console.log(teacherId);
+        var subject = document.getElementById("sub").value;
+        console.log(subject);
+        var request = new XMLHttpRequest();
+        var myObj = {"section":sectionname, "teacher_id":teacherId, "subject":subject};
+        request.open("POST", "https://192.168.43.182:5001/joinRoom", true);
+        request.setRequestHeader('Content-Type', 'application/json');
+        request.onreadystatechange = function () {
+            if (request.readyState === 4 && request.status === 200) {
+                //var json = JSON.parse(request.responseText);
+                var rx = request.responseText;
+                var url = "https://meet.jit.si/" + rx;
+                localStorage.setItem("activeurl", rx);
+                window.open('jitsi.html');
+                console.log(rx);
+            }
+        };
+        request.send(JSON.stringify(myObj));
+      }
+    </script>
+  </body>
+</html>
